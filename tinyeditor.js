@@ -4,12 +4,13 @@ function T$(i){return document.getElementById(i)}
 function T$$$(){return document.all?1:0}
 
 TINY.editor=function(){
-	var c=[], offset=-30;
+	var c=[]
 	c['bold']          =[4,'Bold','a','bold',null, null, 'bold'];
 	c['italic']        =[5,'Italic','a','italic',null, null, 'italic'];
 	c['orderedlist']   =[10,'Numbered List','a','insertorderedlist', null, null, 'list-ol'];
 	c['unorderedlist'] =[11,'Bulleted List','a','insertunorderedlist', null, null, 'list-ul'];
 	c['link']          =[22,'Link','i','createlink','Enter link address:','http://', 'link'];
+
 	function edit(n,obj){
 		var defaults = {
 			xhtml: true,
@@ -43,7 +44,6 @@ TINY.editor=function(){
 		p.className = obj.cssclass||'te';
 		p.style.maxWidth = this.i.width+'px';
 		p.appendChild(h);
-
 		for(i;i<l;i++){
 			var id=obj.controls[i];
 			if(c[id]){
@@ -74,6 +74,13 @@ TINY.editor=function(){
 		m+='</head><body'+bodyid+'>'+(obj.content||this.t.value);
 		m+='</body></html>';
 		this.e.write(m);
+		this.i.contentWindow.onkeyup = function(e){
+			if (e.ctrlKey && window.navigator.platform.slice(0,3) == 'Mac')
+				return
+		    if (e.ctrlKey || e.metaKey)
+		    	if (e.keyCode == 66) editor.action('bold')
+		    	if (e.keyCode == 71) editor.action('italic')
+		}
 		this.e.close();
 		this.e.designMode='on';
 		this.d=1;
