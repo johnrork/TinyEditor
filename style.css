@@ -1,7 +1,6 @@
 .te {border:1px solid #bbb;}
 .te iframe {border:none}
 .teheader {border-bottom:1px solid #bbb; background:#f5f5f5;}
-.tedivider {display: inline-block; width:1px; height:30px; background:#ccc}
 .tecontrol {display: inline-block; width:34px; height:30px; cursor:pointer;}
 .tecontrol:hover {background-color:#e8e8e8;}
 .te i.fa{float: left; padding: 6px;}
